@@ -80,14 +80,17 @@ export default function createTests(scrollbarWidth, envScrollbarWidth) {
                     render((
                         <Scrollbars
                             style={{ width: 100, height: 100 }}
-                            renderScrollbarHorizontal={({style, ...props}) => <section style={{...style, color: 'red'}} {...props}/>}>
+                            renderScrollbarHorizontal={({style, ...props}) => <section style={{...style, color: 'red', height: 10}} {...props}/>}>
                             <div style={{ width: 200, height: 200 }}/>
                         </Scrollbars>
                     ), node, function callback() {
-                        expect(this.refs.barHorizontal.tagName).toEqual('SECTION');
-                        expect(this.refs.barHorizontal.style.position).toEqual('absolute');
-                        expect(this.refs.barHorizontal.style.color).toEqual('red');
-                        done();
+                        setTimeout(() => {
+                            expect(this.refs.barHorizontal.tagName).toEqual('SECTION');
+                            expect(this.refs.barHorizontal.style.height).toEqual('10px');
+                            expect(this.refs.barHorizontal.style.position).toEqual('absolute');
+                            expect(this.refs.barHorizontal.style.color).toEqual('red');
+                            done();
+                        }, 100);
                     });
                 });
             });
@@ -97,14 +100,17 @@ export default function createTests(scrollbarWidth, envScrollbarWidth) {
                     render((
                         <Scrollbars
                             style={{ width: 100, height: 100 }}
-                            renderScrollbarVertical={({style, ...props}) => <section style={{...style, color: 'red'}} {...props}/>}>
+                            renderScrollbarVertical={({style, ...props}) => <section style={{...style, color: 'red', width: 10}} {...props}/>}>
                             <div style={{ width: 200, height: 200 }}/>
                         </Scrollbars>
                     ), node, function callback() {
-                        expect(this.refs.barVertical.tagName).toEqual('SECTION');
-                        expect(this.refs.barVertical.style.position).toEqual('absolute');
-                        expect(this.refs.barVertical.style.color).toEqual('red');
-                        done();
+                        setTimeout(() => {
+                            expect(this.refs.barVertical.tagName).toEqual('SECTION');
+                            expect(this.refs.barVertical.style.width).toEqual('10px');
+                            expect(this.refs.barVertical.style.position).toEqual('absolute');
+                            expect(this.refs.barVertical.style.color).toEqual('red');
+                            done()
+                        }, 100);
                     });
                 });
             });

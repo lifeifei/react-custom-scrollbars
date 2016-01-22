@@ -140,13 +140,13 @@ export default createClass({
 
     getScrollbarHorizontalStyle(widthPercentageInner) {
         return {
-            height: widthPercentageInner < 100 ? 6 : 0
+            height: widthPercentageInner < 100 ? (this.refs.barHorizontal.style.height || 6) : 0
         };
     },
 
     getScrollbarVerticalStyle(heightPercentageInner) {
         return {
-            width: heightPercentageInner < 100 ? 6 : 0
+            width: heightPercentageInner < 100 ? (this.refs.barVertical.style.width || 6) : 0
         };
     },
 
